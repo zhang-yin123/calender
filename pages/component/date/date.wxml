@@ -1,0 +1,20 @@
+<view class="calendar-page">
+  <view class="calendar">
+    <view class="btn-row">
+
+      <view>{{nowYear + "-" + (nowMonth >= 10 ? nowMonth : "0" + nowMonth)}}</view>
+
+    </view>
+    <view class="week-row">
+      <view class="week-item" wx:for="{{week}}" wx:key="index">{{item}}</view>
+    </view>
+    <view class="day-row" wx:for="{{totalDay}}" wx:for-item="item" wx:for-index="index" wx:key="index">
+      <view wx:for="{{item}}" wx:for-item="subItem" wx:for-index="subIndex" wx:key="subIndex" class="day-item {{subItem.today?'day-today':''}} {{subItem.otherMonth || subItem.day <= today ?'day-otherMonth':''}} {{subItem.sele ? 'day-sele' : ''}}" bindtap="sele" data-day="{{ subItem.day }}" data-x="{{index}}" data-y="{{subIndex}}" >
+        <text>{{subItem.day}}</text>
+        <view class="dot" wx:if="{{ subIndex % 2 == 0 && subIndex <=4 && subItem.day}}"></view>
+      </view>
+
+    </view>
+  </view>
+  <button bindtap="chose">确认选择</button>
+</view>
